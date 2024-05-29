@@ -42,4 +42,16 @@ def merge_sort(items):
              result.append(b.pop(0))
     return result
     
+def bubble_sort(items):
+    """
+    Sort items in ascending order using Bubble Sort method.
+    """
+    for i in range(len(items)):
+        for j in range(len(items) - i - 1):
+            if items[j] > items[j+1]:
+                t = items[j]
+                items[j] = items[j+1]
+                items[j+1] = t         
+          
+            
     
