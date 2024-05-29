@@ -14,8 +14,11 @@ def generate_list(m, n):
         result.append(random.randint(0, m))
     return result
 
+# generate a test list
 l = generate_list(100, 10)
 
-sorting.insertion_sort(l)
+# in-place or not in-place function call
+l = sorting.merge_sort(l)
 
+# show result
 print(l)

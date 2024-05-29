@@ -1,3 +1,6 @@
+"""
+Various sorting algorithms.
+"""
 
 def insertion_sort(items):
     """
@@ -16,3 +19,28 @@ def insertion_sort(items):
         items[s + 1] = t
         i += 1
     #return items
+
+def merge_sort(items):
+    """
+    Sort items in ascending order using Merge Sort method.
+    """
+    # a 1-item list is considered a sorted list
+    if len(items) == 1:
+         return items
+    m = len(items) // 2
+    a = merge_sort(items[:m])
+    b = merge_sort(items[m:])
+    result = []
+    while (len(a) > 0) or (len(b) > 0):
+        # if all a items taken, take from b
+        if len(a) == 0:
+             result.append(b.pop(0))
+        # if b empty take from a, or take the lower of a[0] vs b[0]
+        elif (len(b) == 0) or (a[0] < b[0]):
+             result.append(a.pop(0))
+        # take from b if b[0] >= a[0]
+        else:
+             result.append(b.pop(0))
+    return result
+    
+    
