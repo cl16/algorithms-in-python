@@ -18,7 +18,6 @@ def insertion_sort(items):
              s -= 1
         items[s + 1] = t
         i += 1
-    #return items
 
 def merge_sort(items):
     """
