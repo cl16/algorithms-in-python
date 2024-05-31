@@ -2,26 +2,44 @@
 Various sorting algorithms.
 """
 
-def insertion_sort(items):
+def printArgs(f):
     """
-    Sort items in-place in ascending order using Insertion Sort method.
+    Decorator for recursive functions, prints arguments passed for each
+    function call. See what's happening for each recursion level.
     """
-    i = 1
-    while i < len(items):
-        j = i - 1
-        while (j >= 0) and (items[i] < items[j]):
-                j -= 1
-        t = items[i]
-        s = i - 1
-        while s > j:
-             items[s + 1] = items[s]
-             s -= 1
-        items[s + 1] = t
-        i += 1
+    def wrapper(*args):
+        print('Function: ', f.__name__)
+        print('Args:     ', args)
+        return f(*args)
+    return wrapper
+
+"""
+ALGORITHMS
+"""
+def quick_sort(items):
+    """
+    Sort items in ascending order using Quick Sort method.
+    """
+    if len(items) <= 1:
+        return items
+    p = len(items) // 2 # pick partition pivot near middle
+    left = []
+    right = []
+    for i in range(len(items)):
+        if i == p:
+            continue # skip the pivot value, already know position
+        if items[i] < items[p]:
+            left.append(items[i])
+        else:
+            right.append(items[i])
+    # sort partitions recursively
+    left = quick_sort(left)
+    right = quick_sort(right)
+    return left + [items[p]] + right
 
 def merge_sort(items):
     """
-    Sort items in ascending order using Merge Sort method.
+    Sort items in ascending order using recursive Merge Sort method.
     """
     # a 1-item list is considered a sorted list
     if len(items) == 1:
@@ -42,9 +60,26 @@ def merge_sort(items):
             result.append(b.pop(0))
     return result
     
+def insertion_sort(items):
+    """
+    Sort items in-place in ascending order using Insertion Sort method.
+    """
+    i = 1
+    while i < len(items):
+        j = i - 1
+        while (j >= 0) and (items[i] < items[j]):
+                j -= 1
+        t = items[i]
+        s = i - 1
+        while s > j:
+             items[s + 1] = items[s]
+             s -= 1
+        items[s + 1] = t
+        i += 1
+
 def bubble_sort(items):
     """
-    Sort items in ascending order using Bubble Sort method.
+    In-place sort items in ascending order using Bubble Sort method.
     """
     for i in range(len(items)):
         # values up to the ith position from end are already sorted
@@ -56,7 +91,7 @@ def bubble_sort(items):
 
 def selection_sort(items):
     """
-    Sort items in ascending order using Selection Sort method.
+    In-place sort items in ascending order using Selection Sort method.
     """
     for i in range(len(items)):
         # track lowest value seen in loop

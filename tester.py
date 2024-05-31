@@ -34,6 +34,6 @@ l = generate_list(100, 10)
 
 # use decorator and call wrapper function on data
 # decorator shows function called and result
-func = sorting.selection_sort
+func = sorting.quick_sort
 funcAndResult(func)(l)
 
