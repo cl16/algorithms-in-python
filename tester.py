@@ -34,5 +34,6 @@ l = generate_list(100, 10)
 
 # use decorator and call wrapper function on data
 # decorator shows function called and result
-funcAndResult(sorting.merge_sort)(l)
+func = sorting.selection_sort
+funcAndResult(func)(l)
 
