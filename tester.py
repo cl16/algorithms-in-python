@@ -29,11 +29,23 @@ def generate_list(m, n):
         result.append(random.randint(0, m))
     return result
 
-# generate a test list
-l = generate_list(100, 10)
+def test(a, m=100, n=10):
+    """
+    Run a simple test on algorithm a, using a randomly-generated
+    test list of integers.
 
-# use decorator and call wrapper function on data
-# decorator shows function called and result
-func = sorting.quick_sort
-funcAndResult(func)(l)
+    param a: function, sorting algorithm
+    param m: random number maximum, i.e. range 0-m
+    param n: length of test list
+    return: None
+    """
+    l = generate_list(m, n)
+    funcAndResult(a)(l)
+
+if __name__ == '__main__':
+    # generate test list 
+    l = generate_list(100, 10)
+    
+    # print out algorithm, test data, result
+    funcAndResult(sorting.merge_sort)(l)
 
